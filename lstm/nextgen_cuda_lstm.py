@@ -1,5 +1,4 @@
 # LSTM here is based on PyTorch
-import torch
 from torch import nn
 #--------------------------------------------------------------------------------------------------
 # This is the LSTM model. Based on the simple "CudaLSTM" in NeuralHydrology

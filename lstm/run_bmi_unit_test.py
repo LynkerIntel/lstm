@@ -9,7 +9,6 @@ import numpy as np
 #import torch
 #from torch import nn
 from pathlib import Path
-from netCDF4 import Dataset
 import bmi_lstm # This is the BMI LSTM that we will be running
 
 

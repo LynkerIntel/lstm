@@ -1,6 +1,5 @@
 # Need these for BMI
 from bmipy import Bmi
-import time
 # Import data_tools
 # Basic utilities
 import numpy as np

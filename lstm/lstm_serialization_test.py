@@ -6,8 +6,6 @@
 # In[1]:
 
 
-import torch
-from torch import nn
 import matplotlib.pyplot as plt
 from pathlib import Path
 from netCDF4 import Dataset
