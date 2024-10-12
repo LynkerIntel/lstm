@@ -99,17 +99,41 @@ class bmi_LSTM(Bmi):
                                 #--------------   Dynamic inputs --------------------------------
                                 #NJF Let the model assume equivalence of `kg m-2` == `mm h-1` since we can't convert
                                 #mass flux automatically from the ngen framework
-                                #'atmosphere_water__time_integral_of_precipitation_mass_flux':['total_precipitation','kg m-2'],
-                                'atmosphere_water__liquid_equivalent_precipitation_rate':['total_precipitation','mm h-1'],
+                                # 'atmosphere_water__liquid_equivalent_precipitation_rate':['total_precipitation','mm h-1'],
                                 ## 'atmosphere_water__liquid_equivalent_precipitation_rate':['precip', 'mm h-1'], ##### SDP
                                 ## 'atmosphere_water__time_integral_of_precipitation_mass_flux':['total_precipitation','mm h-1'],
-                                'land_surface_radiation~incoming~longwave__energy_flux':['longwave_radiation','W m-2'],
-                                'land_surface_radiation~incoming~shortwave__energy_flux':['shortwave_radiation','W m-2'],
-                                'atmosphere_air_water~vapor__relative_saturation':['specific_humidity','kg kg-1'],
-                                'land_surface_air__pressure':['pressure','Pa'],
-                                'land_surface_air__temperature':['temperature','degC'],
-                                'land_surface_wind__x_component_of_velocity':['wind_u','m s-1'],
-                                'land_surface_wind__y_component_of_velocity':['wind_v','m s-1'],
+
+                                #'atmosphere_water__time_integral_of_precipitation_mass_flux':['total_precipitation','kg m-2'],
+                                # 'land_surface_radiation~incoming~longwave__energy_flux':['longwave_radiation','W m-2'],
+                                # 'land_surface_radiation~incoming~shortwave__energy_flux':['shortwave_radiation','W m-2'],
+                                # 'atmosphere_air_water~vapor__relative_saturation':['specific_humidity','kg kg-1'],
+                                # 'land_surface_air__pressure':['pressure','Pa'],
+                                # 'land_surface_air__temperature':['temperature','degC'],
+                                # 'land_surface_wind__x_component_of_velocity':['wind_u','m s-1'],
+                                # 'land_surface_wind__y_component_of_velocity':['wind_v','m s-1'],
+
+                                # aorc lstm variable mappings
+                                # - APCP_surface: atmosphere_water__rainfall_volume_flux
+                                # - DLWRF_surface: land_surface_radiation~incoming~longwave__energy_flux
+                                # - DSWRF_surface: land_surface_radiation~incoming~shortwave__energy_flux
+                                # - SPFH_2maboveground: atmosphere_air_water~vapor__relative_saturation
+                                # - PRES_surface: land_surface_air__pressure
+                                # - TMP_2maboveground: land_surface_air__temperature
+                                # - UGRD_10maboveground: land_surface_wind__x_component_of_velocity
+                                # - VGRD_10maboveground: land_surface_wind__y_component_of_velocity
+                                'atmosphere_water__liquid_equivalent_precipitation_rate':['APCP_surface','mm h-1'],
+                                # NOTE: @aaraney, I think we can use
+                                #       `atmosphere_water__rainfall_volume_flux` and
+                                #       `atmosphere_water__liquid_equivalent_precipitation_rate`
+                                #       interchangeably
+                                # 'atmosphere_water__rainfall_volume_flux': ['APCP_surface', 'kg m^-2' ],
+                                'land_surface_radiation~incoming~longwave__energy_flux':['DLWRF_surface','W m-2'],
+                                'land_surface_radiation~incoming~shortwave__energy_flux':['DSWRF_surface','W m-2'],
+                                'atmosphere_air_water~vapor__relative_saturation':['SPFH_2maboveground','kg kg-1'],
+                                'land_surface_air__pressure':['PRES_surface','Pa'],
+                                'land_surface_air__temperature':['TMP_2maboveground','degC'],
+                                'land_surface_wind__x_component_of_velocity':['VGRD_10maboveground','m s-1'],
+                                'land_surface_wind__y_component_of_velocity':['VGRD_10maboveground','m s-1'],
                                 #--------------   STATIC Attributes -----------------------------
                                 'basin__area':['area_gages2','km2'],
                                 'ratio__mean_potential_evapotranspiration__mean_precipitation':['aridity','-'],
